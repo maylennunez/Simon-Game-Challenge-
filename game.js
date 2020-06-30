@@ -9,7 +9,7 @@ $(".btn").click(function() { // Use jQuery to detect when any of the buttons are
   console.log(this);
   userClickedPattern.push(userChosenColour); // Add the contents of the variable userChosenColour created in step 2 to the end of this new userClickedPattern
   console.log(userClickedPattern);
-
+    animatePress(userChosenColour);
   playSound(userChosenColour); //  In the same way we played sound in nextSequence() , when a user clicks on a button, the corresponding sound should be played.
 });
 
@@ -30,4 +30,15 @@ function nextSequence() {
 function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
+}
+
+function animatePress(currentColor){
+  // Use jQuery to add this pressed class to the button that gets clicked inside animatePress().
+  $("#" + currentColor).addClass("pressed");
+
+  // use Google/Stackoverflow to figure out how you can use Javascript to remove the pressed class after a 100 milliseconds.
+  setTimeout(function () {
+    $("#" + currentColor).removeClass("pressed");
+  }, 100);
+
 }
