@@ -51,8 +51,18 @@ function checkAnswer(currentLevel) { // Create a new function called checkAnswer
   } else {
 
     console.log("wrong");
+    
+    playSound("wrong");                                 // In the sounds folder, there is a sound called wrong.mp3, play this sound if the user got one of the answers wrong.
+
+    $("body").addClass("game-over");         // In the styles.css file, there is a class called "game-over", apply this class to the body of the website when the user gets one of the answers wrong and then remove it after 200 milliseconds.
+    setTimeout(function () {
+      $("body").removeClass("game-over");
+    }, 200);
+
+  $("#level-title").text("Game Over, Press Any Key to Restart");              // Change the h1 title to say "Game Over, Press Any Key to Restart" if the user got the answer wrong.
 
   }
+
 
 }
 
