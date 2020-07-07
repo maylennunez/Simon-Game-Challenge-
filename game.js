@@ -16,7 +16,6 @@ $(document).keypress(function() {
     nextSequence();
     started = true;
   }
-
 });
 
 $(".btn").click(function() { // Use jQuery to detect when any of the buttons are clicked and trigger a handler function.
@@ -25,9 +24,8 @@ $(".btn").click(function() { // Use jQuery to detect when any of the buttons are
   console.log(this);
   userClickedPattern.push(userChosenColour); // Add the contents of the variable userChosenColour created in step 2 to the end of this new userClickedPattern
   console.log(userClickedPattern);
-  animatePress(userChosenColour);
   playSound(userChosenColour); //  In the same way we played sound in nextSequence() , when a user clicks on a button, the corresponding sound should be played.
-
+  animatePress(userChosenColour);
   checkAnswer(userClickedPattern.length - 1); // Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
 
 
@@ -51,7 +49,7 @@ function checkAnswer(currentLevel) { // Create a new function called checkAnswer
   } else {
 
     console.log("wrong");
-    
+
     playSound("wrong");                                 // In the sounds folder, there is a sound called wrong.mp3, play this sound if the user got one of the answers wrong.
 
     $("body").addClass("game-over");         // In the styles.css file, there is a class called "game-over", apply this class to the body of the website when the user gets one of the answers wrong and then remove it after 200 milliseconds.
@@ -61,10 +59,10 @@ function checkAnswer(currentLevel) { // Create a new function called checkAnswer
 
   $("#level-title").text("Game Over, Press Any Key to Restart");              // Change the h1 title to say "Game Over, Press Any Key to Restart" if the user got the answer wrong.
 
+      starOver();                                          // Call startOver() if the user gets the sequence wrong.
   }
-
-
 }
+
 
 function nextSequence() {
 
@@ -92,9 +90,14 @@ function playSound(name) {
 function animatePress(currentColor) {
   // add this pressed class to the button that gets clicked inside animatePress().
   $("#" + currentColor).addClass("pressed");
-
-    setTimeout(function() {                              // remove the pressed class after a 100 milliseconds.
-    $("#" + currentColor).removeClass("pressed");
+     setTimeout(function() {                              // remove the pressed class after a 100 milliseconds.
+     $("#" + currentColor).removeClass("pressed");
   }, 100);
 
+}
+
+function starOver() {       //  Create a new function called startOver().
+  level = 0;                  //reset the values of level, gamePattern and started variables.
+  gamePattern = [];
+  started = false;
 }
